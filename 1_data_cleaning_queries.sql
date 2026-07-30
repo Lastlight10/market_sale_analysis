@@ -67,40 +67,16 @@ SELECT
     
 FROM market_sales;
 
--- Prepare and Examine RowID
+-- Prepare and Examine Row ID
 SELECT
   MAX(`RowID`) AS max_row_id,
   MIN(`RowID`) AS min_row_id,
   COUNT(*) As rows_count
 FROM market_sales;
 
--- Prepare and Examine OrderID
+-- Prepare and Examine Order ID
 SELECT
-  MAX(`OrderID`) AS max_order_id,
-  MIN(`OrderID`) AS min_order_id,
+  MAX(`OrderID`) AS max_row_id,
+  MIN(`OrderID`) AS min_row_id,
   COUNT(*) As rows_count
 FROM market_sales;
-
--- Count the OrderID that is not in this format
-SELECT COUNT(`OrderID`) AS other_format
-FROM market_sales
-WHERE `OrderID` NOT REGEXP '^(US|CA)-[0-9]{4}-[0-9]+$';
-
--- Prepare and Examine OrderDate
-SELECT
-	MIN(`OrderDate`) AS min_date,
-    MAX(`OrderDate`) AS max_date,
-    COUNT(`OrderDate`) as count_date
-FROM market_sales;
-
--- Prepare and Examine ShipDate
-SELECT
-	MIN(`ShipDate`) AS min_date,
-    MAX(`ShipDate`) AS max_date,
-    COUNT(`OrderDate`) as count_date
-FROM market_sales;
-
--- Check if there are rows where OrderDate > ShipDate
-SELECT COUNT(*) AS shipped_before_order
-FROM market_sales
-WHERE `OrderDate` > `ShipDate`
