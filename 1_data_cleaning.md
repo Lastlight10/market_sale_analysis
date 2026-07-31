@@ -207,3 +207,87 @@ The results of the query were:
 | 0 |
 
 This means that there are no rows where the `ShipDate` is older than the `OrderDate`. This means that the column can be considered clean and prepared for analysis.
+
+#### ShipMode
+
+This column represents the shipping mode for each order. There are a total of four types given by the following SQL query:
+
+```
+SELECT
+DISTINCT(`ShipMode`) AS ship_mode
+FROM market_sales
+GROUP BY `ShipMode`;
+```
+The results of this query are:
+| ship_mode |
+| :--- |
+| Second Class |
+| Standard Class |
+| First Class |
+| Same Day |
+
+The data analyst examined the count for each type of shipping mode and their sum. The query and results are:
+```
+-- Find the count for each types and total
+SELECT *, (count_second_class + count_standard_class + count_first_class + count_same_day) AS total_count
+FROM(
+	SELECT
+		SUM(CASE WHEN `ShipMode` = 'Second Class' THEN 1 ELSE 0 END) AS count_second_class,
+		SUM(CASE WHEN `ShipMode` = 'Standard Class' THEN 1 ELSE 0 END) AS count_standard_class,
+		SUM(CASE WHEN `ShipMode` = 'First Class' THEN 1 ELSE 0 END) AS count_first_class,
+		SUM(CASE WHEN `ShipMode` = 'Same Day' THEN 1 ELSE 0 END) AS count_same_day
+	FROM market_sales
+) AS sub
+```
+| count_second_class | count_standard_class | count_first_class | count_same_day | total_count |
+| :--- | :--- | :--- | :--- | :--- |
+| 1902 | 5859 | 1501 | 538 | 9800 |
+
+The count for each type of shipping mode accounts to the total of rows and their sum. The column can be considered clean and prepared for analysis.
+
+#### CustomerID
+
+The column represents the customer and their unique id. The analyst examined the column with the following query:
+```
+-- Prepare and Examine CustomerID
+SELECT 
+	COUNT(DISTINCT(`CustomerID`)) AS customer_count,
+	COUNT(*) AS customer_rows
+FROM market_sales;
+```
+The results of the SQL query are the following:
+| customer_count | customer_rows |
+| :--- | :--- |
+| 793 | 9800 |  
+
+The results suggests a total of `793` customers with `9800` products sold. Each `CustomerID` follows a specific format of initials and numbers, to check if all `CustomerID` follows this format, the data analyst used:
+```
+SELECT COUNT(`CustomerID`) AS customerid_wrong_format
+FROM market_sales
+WHERE `CustomerID` NOT REGEXP '^[A-Z]{2}-[0-9]{5}$';
+```
+The results of the query are:
+| customerid_wrong_format |
+| :--- |
+| 0 |
+
+The results suggests that all of the `CustomerID` follows the format properly. This means that the column is clean and prepared to be analyzed.
+
+#### CustomerName
+
+The column refers to the customer's name. The data analyst reviewed the column using the following SQL query:
+```
+-- Prepare and examine Customer Name
+SELECT 
+	COUNT(DISTINCT(`CustomerName`)) AS unique_customers,
+	COUNT(`CustomerName`) AS total_count
+FROM market_sales;
+```
+The results of the query are:
+| unique_customers | total_count |
+| :--- | :--- |
+| 793 | 9800 |
+
+This shows that there are `793` customer names with `9800` rows of records. Since the number of `CustomerID` matches with the number of `CustomerName`, it can be said that the names are valid and ready for data analysis.
+
+#### Segment

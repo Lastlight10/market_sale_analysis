@@ -103,4 +103,38 @@ FROM market_sales;
 -- Check if there are rows where OrderDate > ShipDate
 SELECT COUNT(*) AS shipped_before_order
 FROM market_sales
-WHERE `OrderDate` > `ShipDate`
+WHERE `OrderDate` > `ShipDate`;
+
+-- Prepare and Examine ShipMode
+SELECT
+DISTINCT(`ShipMode`) AS ship_mode
+FROM market_sales
+GROUP BY `ShipMode`;
+
+-- Find the count for each types and total
+SELECT *, (count_second_class + count_standard_class + count_first_class + count_same_day) AS total_count
+FROM(
+	SELECT
+		SUM(CASE WHEN `ShipMode` = 'Second Class' THEN 1 ELSE 0 END) AS count_second_class,
+		SUM(CASE WHEN `ShipMode` = 'Standard Class' THEN 1 ELSE 0 END) AS count_standard_class,
+		SUM(CASE WHEN `ShipMode` = 'First Class' THEN 1 ELSE 0 END) AS count_first_class,
+		SUM(CASE WHEN `ShipMode` = 'Same Day' THEN 1 ELSE 0 END) AS count_same_day
+	FROM market_sales
+) AS sub;
+
+-- Prepare and Examine CustomerID
+SELECT 
+	COUNT(DISTINCT(`CustomerID`)) AS customer_count,
+	COUNT(*) AS customer_rows
+FROM market_sales;
+
+-- Count CustomerID not in format
+SELECT COUNT(`CustomerID`) AS customerid_wrong_format
+FROM market_sales
+WHERE `CustomerID` NOT REGEXP '^[A-Z]{2}-[0-9]{5}$';
+
+-- Prepare and examine Customer Name
+SELECT 
+	COUNT(DISTINCT(`CustomerName`)) AS unique_customers,
+	COUNT(`CustomerName`) AS total_count
+FROM market_sales;
