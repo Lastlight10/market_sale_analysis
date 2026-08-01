@@ -100,7 +100,6 @@ SELECT
     SUM(CASE WHEN `Sales` IS NULL THEN 1 ELSE 0 END) AS null_sales
     
 FROM market_sales;
-
 ```
 The results were compiled as a csv file and resulted in all of the columns having values.
 | null_row_id | null_order_id | null_order_date | null_ship_date | null_ship_mode | null_customer_id | null_customer_name | null_segment | null_country | null_city | null_state | null_postal_code | null_region | null_product_id | null_category | null_sub_category | null_product_name | null_sales |
@@ -291,3 +290,133 @@ The results of the query are:
 This shows that there are `793` customer names with `9800` rows of records. Since the number of `CustomerID` matches with the number of `CustomerName`, it can be said that the names are valid and ready for data analysis.
 
 #### Segment
+
+The column represents the type of consumers. To examine the column, the data analyst used the following SQL query:
+
+```
+SELECT 
+	DISTINCT(`Segment`) AS unique_segments
+FROM market_sales;
+```
+The results of the query are:
+| unique_segments |
+| :--- |
+| Consumer |
+| Corporate |
+| Home Office |
+
+The results suggest three types of `Segments`. To examine them further, the analyst used the following query:
+```
+SELECT 
+	DISTINCT(`Segment`) AS unique_segments,
+    SUM(CASE WHEN `Segment` = 'Consumer' THEN 1 ELSE 0 END) AS consumer_count,
+    SUM(CASE WHEN `Segment` = 'Corporate' THEN 1 ELSE 0 END) AS corporate_count,
+    SUM(CASE WHEN `Segment` = 'Home Office' THEN 1 ELSE 0 END) AS home_office_count
+FROM market_sales;
+```
+The results of the query above are:
+| consumer_count | corporate_count | home_office_count | total_count |
+| :--- | :--- | :--- | :--- |
+| 5101 | 2953 | 1746 | 9800 |
+
+The `Segment` are divided into three types with their respective counts on how much they appear in the rows. Their total results to 9800 which is equal to the total rows, meaning that all the values of the columns match the three types, making the column fit for analysis.
+
+#### Country
+
+The column represents the shipping address's country of the consumer. The data analyst examined the data using the following SQL query:
+```
+SELECT
+	DISTINCT(`Country`) as unique_countries,
+    SUM(CASE WHEN `Country` = 'United States' THEN 1 ELSE 0 END) as count_country
+FROM market_sales
+GROUP BY `Country`;
+```
+The results show the countries and the count for each in the dataset. Currently, there is only one country that showed up on all 9800 rows. The data can be used for data analysis.
+
+#### City 
+
+The column represents the city where the customer's shipping address is located. The data analysts examined the dataset using the following SQL query:
+```
+SELECT
+	COUNT(DISTINCT(`City`)) AS unique_cities,
+    COUNT(*) AS rows_count
+FROM market_sales;
+```
+The results of the following are:
+| unique_cities | rows_count |
+| :--- | :--- |
+| 529 | 9800 |
+
+The results show 529 unique cities among the records. Since the city names can be varied in names, but only have alphaberical letters and spaces, the analyst used the following code to check if all the cities are in the proper format:
+```
+-- Find City with improper format
+SELECT COUNT(*) AS cities_wrong_format
+FROM market_sales
+WHERE `City` NOT REGEXP '^[a-zA-Z ]+$';
+```
+
+The results are:
+| cities_wrong_format |
+| :--- |
+| 0 |
+
+This suggests that all of the city names are in proper format making the column ready for analysis.
+
+#### PostalCode
+
+This column represents the postal code for the shipping address of the customer. Postal codes can have varying length. The data analyst used the following code considering this condition:
+```
+-- Check for Postal Code with wrong format
+SELECT 
+    MIN(LENGTH(`PostalCode`)) AS min_length,
+    MAX(LENGTH(`PostalCode`)) AS max_length
+FROM market_sales;
+```
+
+The query is meant to show the maximum and minimum length of the postal codes. The results are:
+
+| min_length | max_length |
+| :--- | :--- |
+| 0 | 5 |
+
+The postal codes are dividied into having different lengths with one of them having `0` length. The eariler analysis identified that there are no `NULL` values therefore in this case, they must be emptry strings. The analyst use the following code to transform this emptry strings into null values:
+```
+SET SQL_SAFE_UPDATES = 0; -- Allow updates to happen at bulk
+
+-- Now run your update statement:
+UPDATE market_sales
+SET `PostalCode` = NULLIF(TRIM(`PostalCode`), '')
+WHERE TRIM(`PostalCode`) = '';
+
+-- Optional: Turn safe updates back on afterward
+SET SQL_SAFE_UPDATES = 1; -- Disallo bulk updates
+```
+Now to determine the results for the count for each length of postal codes, the data analyst used the following:
+```
+SELECT *,
+	(null_length + four_lengths + five_lengths) AS total_count
+FROM (
+	SELECT
+		SUM(CASE WHEN `PostalCode` IS NULL THEN 1 ELSE 0 END) AS null_length,
+		SUM(CASE WHEN LENGTH(`PostalCode`) = 4 THEN 1 ELSE 0 END) AS four_lengths,
+		SUM(CASE WHEN LENGTH(`PostalCode`) = 5 THEN 1 ELSE 0 END) AS five_lengths
+	FROM market_sales
+    WHERE `PostalCode` REGEXP '^[0-9]{4,5}$' OR `PostalCode` IS NULL
+) AS sub;
+```
+The results of the query are:
+| null_length | four_lengths | five_lengths | total_count |
+| :--- | :--- | :--- | :--- |
+| 11 | 429 | 9360 | 9800 |
+
+The `PostalCode` column now consists of postal codes with null values, and values with 4 or 5 length and follows the numeric format or are `NULL`. The data can now bew considered clean and ready for analysis.
+
+#### Null Values Update
+
+Since the data analyst discovered the empty strings and converted them into `NULL` values, the null values are now the following:
+
+| null_row_id | null_order_id | null_order_date | null_ship_date | null_ship_mode | null_customer_id | null_customer_name | null_segment | null_country | null_city | null_state | null_postal_code | null_region | null_product_id | null_category | null_sub_category | null_product_name | null_sales |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+#### Region

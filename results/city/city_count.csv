@@ -1,0 +1,530 @@
+unique_city,count
+Henderson,51
+"Los Angeles",728
+"Fort Lauderdale",13
+Concord,31
+Seattle,426
+"Fort Worth",27
+Madison,10
+"West Jordan",5
+"San Francisco",500
+Fremont,8
+Philadelphia,532
+Orem,9
+Houston,374
+Richardson,2
+Naperville,8
+Melbourne,1
+Eagan,8
+Westland,13
+Dover,19
+"New Albany",4
+"New York City",891
+Troy,29
+Chicago,308
+Gilbert,15
+Springfield,161
+Jackson,82
+Memphis,30
+Decatur,32
+Durham,9
+Columbia,81
+Rochester,53
+Minneapolis,23
+Portland,22
+"Saint Paul",2
+Aurora,68
+Charlotte,51
+"Orland Park",1
+Urbandale,3
+Columbus,221
+Bristol,13
+Wilmington,36
+Bloomington,15
+Phoenix,63
+Roseville,26
+Independence,2
+Pasadena,42
+Newark,92
+Franklin,37
+Scottsdale,12
+"San Jose",42
+Edmond,2
+Carlsbad,11
+"San Antonio",59
+Monroe,21
+Fairfield,42
+"Grand Prairie",13
+Redlands,16
+Hamilton,4
+Westfield,6
+Akron,20
+Denver,44
+Dallas,156
+Whittier,1
+Saginaw,6
+Medina,9
+Dublin,14
+Detroit,115
+Tampa,36
+"Santa Clara",6
+Lakeville,15
+"San Diego",170
+Brentwood,16
+"Chapel Hill",1
+Morristown,7
+Cincinnati,17
+Inglewood,16
+Tamarac,4
+"Colorado Springs",25
+Belleville,10
+Taylor,3
+Lakewood,48
+Arlington,60
+Arvada,4
+Hackensack,6
+"Saint Petersburg",7
+"Long Beach",52
+Hesperia,4
+Murfreesboro,11
+Layton,1
+Austin,39
+Lowell,16
+Manchester,11
+Harlingen,5
+Tucson,32
+Quincy,20
+"Pembroke Pines",14
+"Des Moines",19
+Peoria,23
+"Las Vegas",13
+Warwick,5
+Miami,56
+"Huntington Beach",6
+Richmond,81
+Louisville,54
+Lawrence,44
+Canton,3
+"New Rochelle",6
+Gastonia,4
+Jacksonville,125
+Auburn,24
+Norman,2
+"Park Ridge",3
+Amarillo,10
+Lindenhurst,1
+Huntsville,36
+Fayetteville,41
+"Costa Mesa",8
+Parker,8
+Atlanta,39
+Gladstone,2
+"Great Falls",8
+Lakeland,22
+Montgomery,10
+Mesa,28
+"Green Bay",4
+Anaheim,19
+Marysville,2
+Salem,40
+Laredo,13
+"Grove City",2
+Dearborn,5
+"Warner Robins",2
+Vallejo,6
+"Mission Viejo",5
+"Rochester Hills",1
+Plainfield,10
+"Sierra Vista",3
+Vancouver,5
+Cleveland,38
+Tyler,5
+Burlington,25
+Waynesboro,10
+Chester,16
+Cary,6
+"Palm Coast",5
+"Mount Vernon",8
+Hialeah,18
+Oceanside,30
+Evanston,4
+Trenton,13
+"Cottage Grove",2
+"Bossier City",6
+Lancaster,46
+Asheville,7
+"Lake Elsinore",1
+Omaha,28
+Edmonds,14
+"Santa Ana",14
+Milwaukee,40
+Florence,20
+Lorain,9
+Linden,1
+Salinas,8
+"New Brunswick",2
+Garland,4
+Norwich,4
+Alexandria,16
+Toledo,31
+Farmington,3
+Riverside,14
+Torrance,4
+"Round Rock",7
+"Boca Raton",3
+"Virginia Beach",16
+Murrieta,1
+Olympia,5
+Washington,10
+"Jefferson City",1
+"Saint Peters",1
+Rockford,11
+Brownsville,7
+Yonkers,15
+Oakland,26
+Clinton,29
+Encinitas,5
+Roswell,18
+Jonesboro,11
+Antioch,1
+Homestead,3
+"La Porte",8
+Lansing,8
+"Cuyahoga Falls",3
+Reno,4
+Harrisonburg,7
+Escondido,3
+"Royal Oak",2
+Rockville,5
+"Coral Springs",8
+Buffalo,10
+"Boynton Beach",10
+Gulfport,3
+Fresno,26
+Greenville,9
+Macon,6
+"Cedar Rapids",1
+Providence,31
+Pueblo,8
+Deltona,5
+Murray,5
+Middletown,9
+Freeport,10
+"Pico Rivera",1
+Provo,10
+"Pleasant Grove",7
+Smyrna,22
+Parma,9
+Mobile,11
+"New Bedford",5
+Irving,8
+Vineland,8
+Glendale,23
+"Niagara Falls",2
+Thomasville,3
+Westminster,16
+Coppell,4
+Pomona,7
+"North Las Vegas",16
+Allentown,7
+Tempe,13
+"Laguna Niguel",4
+Bridgeton,2
+Everett,22
+Watertown,10
+Appleton,2
+Bellevue,6
+Allen,4
+"El Paso",19
+Grapevine,2
+Carrollton,13
+Kent,13
+Lafayette,29
+Tigard,8
+Skokie,11
+Plano,15
+Suffolk,10
+Indianapolis,18
+Bayonne,3
+Greensboro,13
+Baltimore,43
+Kenosha,9
+Olathe,5
+Tulsa,26
+Redmond,11
+Raleigh,21
+Muskogee,4
+Meriden,11
+"Bowling Green",10
+"South Bend",6
+Spokane,7
+Keller,1
+"Port Orange",1
+Medford,4
+Charlottesville,2
+Missoula,1
+Apopka,7
+Reading,5
+Broomfield,5
+Paterson,20
+"Oklahoma City",23
+Chesapeake,18
+Lubbock,6
+"Johnson City",12
+"San Bernardino",6
+Leominster,6
+Bozeman,2
+"Perth Amboy",8
+Ontario,1
+"Rancho Cucamonga",4
+Moorhead,2
+Mesquite,5
+Stockton,6
+"Ormond Beach",1
+Sunnyvale,6
+York,5
+"College Station",3
+"Saint Louis",5
+Manteca,3
+"San Angelo",4
+"Salt Lake City",8
+Knoxville,24
+"Little Rock",24
+"Lincoln Park",3
+Marion,16
+Littleton,1
+Bangor,5
+Southaven,7
+"New Castle",2
+Midland,12
+"Sioux Falls",9
+"Fort Collins",7
+Clarksville,7
+Sacramento,13
+"Thousand Oaks",5
+Malden,3
+Holyoke,1
+Albuquerque,14
+Sparks,3
+Coachella,2
+Elmhurst,4
+Passaic,6
+"North Charleston",2
+"Newport News",12
+Jamestown,2
+Mishawaka,2
+"La Quinta",1
+Tallahassee,17
+Nashville,29
+Bellingham,3
+Woodstock,3
+"Haltom City",4
+Wheeling,7
+Summerville,2
+"Hot Springs",4
+Englewood,2
+"Las Cruces",3
+Hoover,4
+Frisco,2
+Vacaville,1
+Waukesha,1
+Bakersfield,16
+"Pompano Beach",3
+"Corpus Christi",8
+"Redondo Beach",8
+Orlando,11
+Orange,6
+"Lake Charles",3
+"Highland Park",7
+Hempstead,11
+Noblesville,4
+"Apple Valley",9
+"Mount Pleasant",2
+"Sterling Heights",3
+"Eau Claire",6
+Pharr,4
+Billings,1
+Gresham,5
+Chattanooga,10
+Meridian,4
+Bolingbrook,6
+"Maple Grove",4
+Woodland,3
+"Missouri City",1
+Pearland,3
+"San Mateo",1
+"Grand Rapids",5
+Visalia,4
+"Overland Park",6
+Temecula,4
+Yucaipa,1
+Revere,7
+Conroe,1
+"Tinley Park",1
+Dubuque,3
+"Dearborn Heights",6
+"Santa Fe",2
+Hickory,2
+"Carol Stream",5
+"Saint Cloud",3
+"North Miami",2
+Plantation,11
+"Port Saint Lucie",3
+"Rock Hill",1
+Odessa,5
+"West Allis",2
+"Chula Vista",3
+Manhattan,1
+Altoona,2
+Thornton,10
+Champaign,1
+Texarkana,2
+Edinburg,3
+Baytown,1
+Greenwood,4
+Woonsocket,4
+Superior,9
+Bedford,5
+Covington,4
+"Broken Arrow",5
+Miramar,8
+Hollywood,11
+"Deer Park",1
+Wichita,7
+Mcallen,19
+"Iowa City",1
+Boise,4
+Cranston,15
+"Port Arthur",6
+"Citrus Heights",1
+"The Colony",3
+"Daytona Beach",4
+"Bullhead City",2
+Portage,1
+Fargo,7
+Elkhart,2
+"San Gabriel",3
+Margate,1
+"Sandy Springs",14
+Mentor,6
+Lawton,4
+Hampton,11
+Rome,6
+"La Crosse",5
+Lewiston,4
+Hattiesburg,9
+Danville,7
+Logan,5
+Waterbury,11
+Athens,6
+Avondale,6
+Marietta,7
+Yuma,4
+Wausau,4
+Pasco,6
+"Oak Park",3
+Pensacola,1
+"League City",6
+Gaithersburg,2
+Lehi,2
+Tuscaloosa,2
+"Moreno Valley",10
+Georgetown,8
+Loveland,4
+Chandler,6
+Helena,3
+Kirkwood,2
+Waco,6
+Frankfort,2
+Bethlehem,5
+"Grand Island",1
+Woodbury,3
+Rogers,1
+Clovis,2
+Jupiter,1
+"Santa Barbara",6
+"Cedar Hill",2
+Norfolk,1
+Draper,3
+"Ann Arbor",5
+"La Mesa",2
+Pocatello,7
+Holland,3
+Milford,6
+"Buffalo Grove",2
+"Lake Forest",6
+Redding,1
+Chico,11
+Utica,7
+Conway,1
+Cheyenne,1
+Owensboro,2
+Caldwell,3
+Kenner,2
+Nashua,2
+Bartlett,1
+"Redwood City",1
+Lebanon,3
+"Santa Maria",1
+"Des Plaines",6
+Longview,3
+Hendersonville,5
+Waterloo,1
+Cambridge,6
+Palatine,1
+Beverly,3
+Eugene,6
+Oxnard,9
+Renton,3
+Glenview,1
+"Delray Beach",3
+"Commerce City",1
+"Texas City",3
+Wilson,6
+"Rio Rancho",2
+Goldsboro,1
+Montebello,1
+"El Cajon",2
+Beaumont,3
+"West Palm Beach",3
+Abilene,1
+Normal,1
+"Saint Charles",10
+Camarillo,5
+Hillsboro,4
+Burbank,3
+Modesto,3
+"Garden City",5
+"Atlantic City",1
+Longmont,3
+Davis,1
+"Morgan Hill",4
+Clifton,2
+Sheboygan,4
+"East Point",3
+"Rapid City",2
+Andover,4
+Kissimmee,1
+Shelton,2
+Danbury,1
+Sanford,2
+"San Marcos",4
+Greeley,2
+Mansfield,2
+Elyria,1
+"Twin Falls",2
+"Coral Gables",2
+Romeoville,1
+Marlborough,2
+Laurel,2
+Bryan,4
+"Pine Bluff",2
+Aberdeen,1
+Hagerstown,1
+"East Orange",1
+"Arlington Heights",1
+Oswego,3
+"Coon Rapids",2
+"San Clemente",2
+"San Luis Obispo",1
+Springdale,1

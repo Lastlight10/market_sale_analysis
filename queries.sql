@@ -138,3 +138,74 @@ SELECT
 	COUNT(DISTINCT(`CustomerName`)) AS unique_customers,
 	COUNT(`CustomerName`) AS total_count
 FROM market_sales;
+
+-- Prepare and examine Segment
+SELECT *,
+	(consumer_count + corporate_count + home_office_count) AS total_count
+FROM( 
+	SELECT
+		SUM(CASE WHEN `Segment` = 'Consumer' THEN 1 ELSE 0 END) AS consumer_count,
+		SUM(CASE WHEN `Segment` = 'Corporate' THEN 1 ELSE 0 END) AS corporate_count,
+		SUM(CASE WHEN `Segment` = 'Home Office' THEN 1 ELSE 0 END) AS home_office_count
+	FROM market_sales
+) AS sub;
+
+-- Prepare and examine Country
+SELECT
+	DISTINCT(`Country`) as unique_countries,
+    SUM(CASE WHEN `Country` = 'United States' THEN 1 ELSE 0 END) as count_country
+FROM market_sales
+GROUP BY `Country`;
+
+-- Prepare and examine City
+SELECT
+	COUNT(DISTINCT(`City`)) AS unique_cities,
+    COUNT(*) AS rows_count
+FROM market_sales;
+
+-- Find City with improper format
+SELECT COUNT(*) AS cities_wrong_format
+FROM market_sales
+WHERE `City` NOT REGEXP '^[a-zA-Z ]+$';
+
+-- Prepare and examine the PostalCode
+SELECT
+	COUNT(DISTINCT(`PostalCode`)) AS unique_postal_code,
+    COUNT(*) AS rows_count
+FROM market_sales;
+
+-- Check for Postal Code with wrong format
+SELECT 
+    MIN(LENGTH(`PostalCode`)) AS min_length,
+    MAX(LENGTH(`PostalCode`)) AS max_length
+FROM market_sales;
+
+-- Check for rows with empty string for PostalCode
+SELECT `RowID`, `PostalCode`
+FROM market_sales
+WHERE `PostalCode` = '';
+
+-- Change PostalCodes with empty strings to NULL
+SET SQL_SAFE_UPDATES = 0; -- Allow updates to happen at bulk
+
+-- Now run your update statement:
+UPDATE market_sales
+SET `PostalCode` = NULLIF(TRIM(`PostalCode`), '')
+WHERE TRIM(`PostalCode`) = '';
+
+-- Optional: Turn safe updates back on afterward
+SET SQL_SAFE_UPDATES = 1; -- Disallo bulk updates
+
+-- Count for each Postal codes with their length
+SELECT *,
+	(null_length + four_lengths + five_lengths) AS total_count
+FROM (
+	SELECT
+		SUM(CASE WHEN `PostalCode` IS NULL THEN 1 ELSE 0 END) AS null_length,
+		SUM(CASE WHEN LENGTH(`PostalCode`) = 4 THEN 1 ELSE 0 END) AS four_lengths,
+		SUM(CASE WHEN LENGTH(`PostalCode`) = 5 THEN 1 ELSE 0 END) AS five_lengths
+	FROM market_sales
+    WHERE `PostalCode` REGEXP '^[0-9]{4,5}$' OR `PostalCode` IS NULL
+) AS sub;
+
+-- Prepare and examine Region
