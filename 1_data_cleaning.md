@@ -420,3 +420,156 @@ Since the data analyst discovered the empty strings and converted them into `NUL
 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 #### Region
+
+The column represents the region of the customer. The data analyst used the following SQL query:
+```
+SELECT
+	`Region` AS unique_regions,
+    COUNT(*) AS region_count
+FROM market_sales
+GROUP BY `Region`
+UNION ALL
+SELECT
+	'Total' AS unique_regions,
+    COUNT(*) AS region_count
+FROM market_sales;
+```
+
+The results of the query are:
+| unique_regions | region_count |
+| :--- | :--- |
+| South | 1598 |
+| West | 3140 |
+| Central | 2277 |
+| East | 2785 |
+| Total | 9800 |
+
+The results show four regions with each unique counts, totalling up to `9800` rows. This suggests that all the values are split up between these 4 regions and there are no missing or anomalies in the values. The column is prepared for data analysis.
+
+#### ProductID
+
+The column represents the id of the products purchased. The data analyst examined the column using the SQL query:
+```
+-- Prepare and examine ProductID
+SELECT `ProductID` FROM market_sales LIMIT 5;
+```
+| ProductID |
+| :--- |
+| FUR-BO-10001798 |
+| FUR-CH-10000454 |
+| OFF-LA-10000240 |
+| FUR-TA-10000577 |
+| OFF-ST-10000760 |
+
+The results showed 5 example of `ProductID` following a certain format, to determine how many values are in this format, the analyst used the following query:
+```
+SELECT
+	COUNT(*) AS total_rows
+FROM market_sales
+WHERE `ProductID` REGEXP '^[A-Z]{3}-[A-Z]{2}-[0-9]+$';
+```
+The results are the following:
+| total_rows |
+| :--- |
+| 9800 |
+
+The results suggests that all of the `ProductID` are in proper format, making the column cleaned and prepared for data analysis.
+
+#### Category
+
+The column represents the categories in which the product falls into. The data analyst examined the data using the following query:
+```
+SELECT
+	`Category` AS unique_category,
+	COUNT(*) AS rows_count
+FROM market_sales
+GROUP BY `Category`
+UNION ALL
+SELECT
+	'TOTAL' AS unique_category,
+    COUNT(*) AS rows_count
+FROM market_sales;
+```
+The results of the SQL query are:
+| unique_category | rows_count |
+| :--- | :--- |
+| Furniture | 2078 |
+| Office Supplies | 5909 |
+| Technology | 1813 |
+| TOTAL | 9800 |
+
+The results show that the products are divided into three main categories and totalling up to `9800`. This suggests that all the values in the `Category` column are viable for data analysis.
+
+#### SubCategory
+The column represents the sub categories the products are under in. The data analyst used the following SQL query:
+```
+-- Prepare and examine SubCategory
+SELECT
+	Category  AS unique_category,
+    SubCategory AS unique_sub_category,
+	COUNT(*) AS rows_count
+FROM market_sales
+GROUP BY Category, SubCategory
+UNION ALL
+SELECT
+	'TOTAL' AS unique_category,
+    'TOTAL' AS unique_sub_category,
+    COUNT(*) AS rows_count
+FROM market_sales
+ORDER BY
+(unique_category = 'TOTAL'),
+unique_category,
+unique_sub_category;
+```
+The results of the query are:
+| unique_category | unique_sub_category | rows_count |
+| :--- | :--- | :--- |
+| Furniture | Bookcases | 226 |
+| Furniture | Chairs | 607 |
+| Furniture | Furnishings | 931 |
+| Furniture | Tables | 314 |
+| Office Supplies | Appliances | 459 |
+| Office Supplies | Art | 785 |
+| Office Supplies | Binders | 1492 |
+| Office Supplies | Envelopes | 248 |
+| Office Supplies | Fasteners | 214 |
+| Office Supplies | Labels | 357 |
+| Office Supplies | Paper | 1338 |
+| Office Supplies | Storage | 832 |
+| Office Supplies | Supplies | 184 |
+| Technology | Accessories | 756 |
+| Technology | Copiers | 66 |
+| Technology | Machines | 115 |
+| Technology | Phones | 876 |
+| TOTAL | TOTAL | 9800 |
+
+The data shows the subcategories and their counts. The sub categories are under the categories and with their total count combined, the rows add up to `9800` meaning, all the rows are valid for data analysis.
+
+#### ProductName
+
+The column represents the product name. Since the product names can have a variety of format, the analyst examined the column for null values. The data analyst used the following SQL query to examine the data:
+```
+-- Prepare and examine ProductName
+SELECT COUNT(*) AS null_product_name
+FROM market_sales
+WHERE `ProductName` IS NULL OR `ProductName` = '';
+```
+| null_product_name |
+| :--- |
+| 0 |
+
+The results show that all of the `ProductName` have valid values in their cells. This makes the column ready for data analysis.
+
+#### Sales 
+The column represents the amount of sales the products made. Since the data are stored as floats, the analyst has decided to count the rows where the value is greater than 0. The analyst used the following SQL query:
+```
+-- Prepare and examine Sales
+SELECT COUNT(*) AS rows_count
+FROM market_sales
+WHERE `Sales` >= 0;
+```
+| rows_count |
+| :--- |
+| 9800 |
+
+The results shows the number of rows that have values greater than 0. This number is `9800` which means that all the values are valid and ready for data analysis.

@@ -1,0 +1,19 @@
+unique_category,unique_sub_category,rows_count
+Furniture,Bookcases,226
+Furniture,Chairs,607
+Furniture,Furnishings,931
+Furniture,Tables,314
+"Office Supplies",Appliances,459
+"Office Supplies",Art,785
+"Office Supplies",Binders,1492
+"Office Supplies",Envelopes,248
+"Office Supplies",Fasteners,214
+"Office Supplies",Labels,357
+"Office Supplies",Paper,1338
+"Office Supplies",Storage,832
+"Office Supplies",Supplies,184
+Technology,Accessories,756
+Technology,Copiers,66
+Technology,Machines,115
+Technology,Phones,876
+TOTAL,TOTAL,9800

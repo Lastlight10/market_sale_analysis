@@ -209,3 +209,62 @@ FROM (
 ) AS sub;
 
 -- Prepare and examine Region
+SELECT
+	`Region` AS unique_regions,
+    COUNT(*) AS region_count
+FROM market_sales
+GROUP BY `Region`
+UNION ALL
+SELECT
+	'Total' AS unique_regions,
+    COUNT(*) AS region_count
+FROM market_sales;
+
+-- Prepare and examine ProductID
+SELECT `ProductID` FROM market_sales LIMIT 5;
+
+-- Count all rows following the format
+SELECT
+	COUNT(*) AS total_rows
+FROM market_sales
+WHERE `ProductID` REGEXP '^[A-Z]{3}-[A-Z]{2}-[0-9]+$';
+
+-- Prepare and examine Category
+SELECT
+	`Category` AS unique_category,
+	COUNT(*) AS rows_count
+FROM market_sales
+GROUP BY `Category`
+UNION ALL
+SELECT
+	'TOTAL' AS unique_category,
+    COUNT(*) AS rows_count
+FROM market_sales;
+
+-- Prepare and examine SubCategory
+SELECT
+	Category  AS unique_category,
+    SubCategory AS unique_sub_category,
+	COUNT(*) AS rows_count
+FROM market_sales
+GROUP BY Category, SubCategory
+UNION ALL
+SELECT
+	'TOTAL' AS unique_category,
+    'TOTAL' AS unique_sub_category,
+    COUNT(*) AS rows_count
+FROM market_sales
+ORDER BY
+(unique_category = 'TOTAL'),
+unique_category,
+unique_sub_category;
+
+-- Prepare and examine ProductName
+SELECT COUNT(*) AS null_product_name
+FROM market_sales
+WHERE `ProductName` IS NULL OR `ProductName` = '';
+
+-- Prepare and examine Sales
+SELECT COUNT(*) AS rows_count
+FROM market_sales
+WHERE `Sales` >= 0;
