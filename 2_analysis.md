@@ -182,3 +182,172 @@ The SQL query selects the `OrderID`, `Category`, and the sum of the `Sales` per 
 | Technology | 544.73724358 |
 
 The results how that for the `Category` of  `Furniture`, it has an average order value of `421.92158408`, `Office Supplies` has an average order value of `191.89943798` and `Technology` has an average of `544.73724358`. The results are saves as `4_average_value_per_order.csv` in the folder `results/data_analysis`.
+
+##### 5. What is the average time between order date and ship date, and does it vary by ship mode or region?
+
+The data analyst used the avergae of the difference between the two dates for the overall data, by `ShipMode` and by `Region`. The analyst used the following SQL query:
+
+For the overall average:
+```
+-- 5.  What is the average time between order date and ship date, and does it vary by ship mode or region?
+-- For the overall average:
+SELECT
+	AVG(ShipDate - OrderDate) AS overall_avg_days
+FROM market_sales;
+```
+
+The query identifies the average of the differences in days between the `ShipDate` and the `OrderDate`. The results of the query are:
+| overall_avg_days |
+| :--- |
+| 145.8273 |
+The results show that it takes `145.8273` days for the average order to arrive. 
+
+For the `ShipMode`, the data analyst used the following SQL query:
+```
+-- For the ShipMode
+SELECT
+    ShipMode,
+	AVG(ShipDate - OrderDate) AS avg_days
+FROM market_sales
+GROUP BY ShipMode
+ORDER BY avg_days DESC;
+```
+
+The query shows the differences of between the `ShipDate` and `OrderDate` in days grouped by the `ShipMode` to analyze each of the average days for each type. The results of the query are the following:
+| ShipMode | avg_days |
+| :--- | :--- |
+| Standard Class | 190.9913 |
+| Second Class | 116.0799 |
+| First Class | 59.4817 |
+| Same Day | 0.0446 |  
+
+The results show the average length of time between the different shipping modes. `Standard Class` has the longest with `190.9913` days, followed by `Second Class` with `116.0799` days, `First Class` with `59.4817` days and `Same Day` with `0.0446` days.
+
+For each `Region`, the analyst used:
+```
+-- For the Region
+SELECT
+    Region,
+	AVG(ShipDate - OrderDate) AS avg_days
+FROM market_sales
+GROUP BY Region
+ORDER BY avg_days DESC;
+```
+The query shows the differences of between the `ShipDate` and `OrderDate` in days grouped by the `Region` to analyze each of the average days for each type. The results of the query are the following:
+| Region | avg_days |
+| :--- | :--- |
+| Central | 198.1256 |
+| West | 137.9815 |
+| East | 128.8625 |
+| South | 116.2904 |
+
+The results of the query shows that `Central` has the longest time with `198.1256` days. Followed by `West` with `137.9815` days, `East` with `128.8625` days and lastly, `South` with `116.2904` days. 
+
+The results show that the average time between order and shipdate varies depending on the shipping mode and regions. The results are saved in as `5_overall_average_days.csv`, `5_ship_mode_average.csv`, and `5_region_average.csv` in the folder `results/data_analysis` respectively.
+
+##### 6. Is there a relationship between customer segment and preferred product category?
+
+The data analyst aimed to determine the relation ship between the `Segment` and `Catagory`. The analyst used the following query:
+```
+-- 6. Is there a relationship between customer segment and preferred product category?
+SELECT
+	Segment,
+	Category,
+	COUNT(*) AS count
+FROM market_sales
+GROUP BY Segment, Category
+ORDER BY Segment, count DESC;
+```
+The query determines the frequency of of the products ordered by the `Segment` under their preferred `Category`. The results are:
+
+| Segment | Category | count |
+| :--- | :--- | :--- |
+| Consumer | Office Supplies | 3072 |
+| Consumer | Furniture | 1093 |
+| Consumer | Technology | 936 |
+| Corporate | Office Supplies | 1783 |
+| Corporate | Furniture | 628 |
+| Corporate | Technology | 542 |
+| Home Office | Office Supplies | 1054 |
+| Home Office | Furniture | 357 |
+| Home Office | Technology | 335 |
+
+The results show that `Consumer`, `Corporate`, and `Home Office` are more likely to order products under the `Office Supplies` category. Followed by `Furniture` and `Technology`.
+
+There is a relation ship between the `Segment` and `Category` where all of the `Segment` types are more likely to order `Office Supplies` products. The results is saved as `6_relationship_segment_category.csv` in the folder `results/data_analysis`;
+
+##### 7. What are the top 10 customers by total sales, and how much do they contribute to overall revenue (Pareto analysis)?
+
+The data analyst seeked to get the top 10 customers with the most sales and compare them to the rest of the total revenue. Using Pareto analysis, the data analyst used the following SQL query:
+```
+WITH customer_sales AS (
+    SELECT
+        CustomerID,
+        CustomerName,
+        SUM(Sales) AS total_sales
+    FROM market_sales
+    GROUP BY CustomerID, CustomerName
+),
+overall AS (
+    SELECT SUM(total_sales) AS grand_total
+    FROM customer_sales
+)
+SELECT
+    cs.CustomerID,
+    cs.CustomerName,
+    cs.total_sales,
+    ROUND(cs.total_sales * 100.0 / o.grand_total, 2) AS pct_of_total,
+    ROUND(
+        SUM(cs.total_sales) OVER (ORDER BY cs.total_sales DESC) * 100.0 / o.grand_total,
+        2
+    ) AS cumulative_pct
+FROM customer_sales cs
+CROSS JOIN overall o
+ORDER BY cs.total_sales DESC;
+```
+
+The query is divided into many steps. Firstly, the query gathers all the customers and their total sum of sales. Secondly, the grand total of all the sales are stored as the `grand_total`. Next, query gathers the `CustomerID`, `CustomerName`, their `total_sales`, the percentage of their sales compared to the `grand_total`, and the cumulative percentages. The top 10 results of the query are:
+
+| CustomerID | CustomerName | total_sales | customer_rank | pct_of_total | cumulative_pct |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| SM-20320 | Sean Miller | 25043.0500 | 1 | 1.11 | 1.11 |
+| TC-20980 | Tamara Chand | 19052.2180 | 2 | 0.84 | 1.95 |
+| RB-19360 | Raymond Buch | 15117.3390 | 3 | 0.67 | 2.62 |
+| TA-21385 | Tom Ashbrook | 14595.6200 | 4 | 0.65 | 3.26 |
+| AB-10105 | Adrian Barton | 14473.5710 | 5 | 0.64 | 3.90 |
+| KL-16645 | Ken Lonsdale | 14175.2290 | 6 | 0.63 | 4.53 |
+| SC-20095 | Sanjit Chand | 14142.3340 | 7 | 0.63 | 5.16 |
+| HL-15040 | Hunter Lopez | 12873.2980 | 8 | 0.57 | 5.72 |
+| SE-20110 | Sanjit Engle | 12209.4380 | 9 | 0.54 | 6.26 |
+| CC-12370 | Christopher Conant | 12129.0720 | 10 | 0.54 | 6.80 |
+
+Overall, the customers in the top 10 order sales contribute up to `6.8%` of the overall revenue. The data visualization below shows the whole Pareto Analysis:
+
+The results are saves as `7_top_ten_sales.csv` in the folder `results/data_analysis`.
+
+##### 8. Which shipping mode is most commonly used?
+
+The data analyst answered the question by collecting the count of each records under the specific `ShipMode`. The SQL query used are the following:
+```
+
+-- 8. Which shipping mode is most commonly used?
+SELECT
+	ShipMode,
+    COUNT(*) AS count
+FROM market_sales
+GROUP BY ShipMode
+ORDER BY count DESC;
+```
+
+The query results are the following:
+
+| ShipMode | count |
+| :--- | :--- |
+| Standard Class | 5859 |
+| Second Class | 1902 |
+| First Class | 1501 |
+| Same Day | 538 |
+
+The results show that the `Standard Class` is the most commonly used, followed by `Second Class`, `First Class`, and `Same Day` respectively. The results of the following are saved as `8_ship_mode_count.csv` in the folder `results/data_analysis`.
+
+##### 9. 

@@ -1,0 +1,11 @@
+CustomerID,CustomerName,total_sales,customer_rank,pct_of_total,cumulative_pct
+SM-20320,"Sean Miller",25043.0500,1,1.11,1.11
+TC-20980,"Tamara Chand",19052.2180,2,0.84,1.95
+RB-19360,"Raymond Buch",15117.3390,3,0.67,2.62
+TA-21385,"Tom Ashbrook",14595.6200,4,0.65,3.26
+AB-10105,"Adrian Barton",14473.5710,5,0.64,3.90
+KL-16645,"Ken Lonsdale",14175.2290,6,0.63,4.53
+SC-20095,"Sanjit Chand",14142.3340,7,0.63,5.16
+HL-15040,"Hunter Lopez",12873.2980,8,0.57,5.72
+SE-20110,"Sanjit Engle",12209.4380,9,0.54,6.26
+CC-12370,"Christopher Conant",12129.0720,10,0.54,6.80

@@ -55,3 +55,71 @@ WITH TotalSalesPerOrder AS (
 SELECT Category, AVG(total_sale_per_order) AS avg_order_value
 FROM TotalSalesPerOrder
 GROUP BY Category;
+
+-- 5.  What is the average time between order date and ship date, and does it vary by ship mode or region?
+-- For the overall average:
+SELECT
+	AVG(ShipDate - OrderDate) AS overall_avg_days
+FROM market_sales;
+
+-- For the ShipMode
+SELECT
+    ShipMode,
+	AVG(ShipDate - OrderDate) AS avg_days
+FROM market_sales
+GROUP BY ShipMode
+ORDER BY avg_days DESC;
+
+-- For the Region
+SELECT
+    Region,
+	AVG(ShipDate - OrderDate) AS avg_days
+FROM market_sales
+GROUP BY Region
+ORDER BY avg_days DESC;
+
+-- 6. Is there a relationship between customer segment and preferred product category?
+SELECT
+	Segment,
+	Category,
+	COUNT(*) AS count
+FROM market_sales
+GROUP BY Segment, Category
+ORDER BY Segment, count DESC;
+
+-- 7. What are the top 10 customers by total sales, and how much do they contribute to overall revenue (Pareto analysis)?
+
+WITH customer_sales AS (
+    SELECT
+        CustomerID,
+        CustomerName,
+        SUM(Sales) AS total_sales
+    FROM market_sales
+    GROUP BY CustomerID, CustomerName
+),
+overall AS (
+    SELECT SUM(total_sales) AS grand_total
+    FROM customer_sales
+)
+SELECT
+    cs.CustomerID,
+    cs.CustomerName,
+    cs.total_sales,
+    ROW_NUMBER() OVER (ORDER BY total_sales DESC) AS customer_rank,
+    ROUND(cs.total_sales * 100.0 / o.grand_total, 2) AS pct_of_total,
+    ROUND(
+        SUM(cs.total_sales) OVER (ORDER BY cs.total_sales DESC) * 100.0 / o.grand_total,
+        2
+    ) AS cumulative_pct
+FROM customer_sales cs
+CROSS JOIN overall o
+ORDER BY cs.total_sales DESC;
+-- LIMIT 10;
+
+-- 8. Which shipping mode is most commonly used?
+SELECT
+	ShipMode,
+    COUNT(*) AS count
+FROM market_sales
+GROUP BY ShipMode
+ORDER BY count DESC;

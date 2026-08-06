@@ -1,0 +1,10 @@
+Segment,Category,count
+Consumer,"Office Supplies",3072
+Consumer,Furniture,1093
+Consumer,Technology,936
+Corporate,"Office Supplies",1783
+Corporate,Furniture,628
+Corporate,Technology,542
+"Home Office","Office Supplies",1054
+"Home Office",Furniture,357
+"Home Office",Technology,335
