@@ -59,13 +59,13 @@ GROUP BY Category;
 -- 5.  What is the average time between order date and ship date, and does it vary by ship mode or region?
 -- For the overall average:
 SELECT
-	AVG(ShipDate - OrderDate) AS overall_avg_days
+	AVG(DATEDIFF(ShipDate, OrderDate)) AS overall_avg_days
 FROM market_sales;
 
 -- For the ShipMode
 SELECT
     ShipMode,
-	AVG(ShipDate - OrderDate) AS avg_days
+	AVG(DATEDIFF(ShipDate, OrderDate)) AS avg_days
 FROM market_sales
 GROUP BY ShipMode
 ORDER BY avg_days DESC;
@@ -73,7 +73,7 @@ ORDER BY avg_days DESC;
 -- For the Region
 SELECT
     Region,
-	AVG(ShipDate - OrderDate) AS avg_days
+	AVG(DATEDIFF(ShipDate, OrderDate)) AS avg_days
 FROM market_sales
 GROUP BY Region
 ORDER BY avg_days DESC;

@@ -22,8 +22,8 @@ In this data analysis, the analyst is determined to answer the following questio
 6. Is there a relationship between customer segment and preferred product category?
 7. What are the top 10 customers by total sales, and how much do they contribute to overall revenue (Pareto analysis)?
 8. Which shipping mode is most commonly used?
-9. Can you build a time-series model (ARIMA, Prophet, exponential smoothing) to forecast next quarter's sales?
-10. Can you provide a forecast for the next quarter?
+9. Can you build a time-series model to forecast next quarter's sales?
+10. Can you provide a forecast for the next year?
     
 #### Exploratory Data Analysis
 
@@ -64,7 +64,7 @@ The results of the query are saved as `1_category_subcategory_highest_sales.csv`
 
 The results show that `Technology, Phones` have the highest total sales followed closely by `Furniture, Chairs`. Using PowerBI, the analyst visualized the data:
 
-
+![Visual 1](/images/visualizations/visual_market_sales_data_analysis-images-0.jpg)
 
 ##### 2. Which regions are underperforming and might benefit from targeted marketing?
 
@@ -120,7 +120,11 @@ The query is meant to get the average sales of each region, the second expressio
 | :--- | :--- |
 | Central | 216.35788898 |
 
-This means that the `Central` region has been underperforming and would benefit from a marketing campaign. The results are saved as `2_underperforming_region.csv` in the folder `results/data_analysis`.
+This means that the `Central` region has been underperforming and would benefit from a marketing campaign. The data analyst visualized the data using PowerBI:
+
+![Visual 2](/images/visualizations/visual_market_sales_data_analysis-images-1.jpg)
+
+The results are saved as `2_underperforming_region.csv` in the folder `results/data_analysis`.
 
 ##### 3. What is the distribution of orders across different customer segments (Consumer, Corporate, Home Office)?
 
@@ -154,6 +158,7 @@ The queries gathers all the seqments and their counts into `SegmentsCount`, and 
 
 The results show that majority of the orders came from the segment `Consumer`, followed by `Corporate` then `Home Office`. To further visualize the results, the data analyst used PowerBI to display the data:
 
+![Visual 3](/images/visualizations/visual_market_sales_data_analysis-images-2.jpg)
 
 The results were saved as `3_distribution_of_segments.csv` in the folder `results/data_analysis`.
 
@@ -181,7 +186,11 @@ The SQL query selects the `OrderID`, `Category`, and the sum of the `Sales` per 
 | Office Supplies | 191.89943798 |
 | Technology | 544.73724358 |
 
-The results how that for the `Category` of  `Furniture`, it has an average order value of `421.92158408`, `Office Supplies` has an average order value of `191.89943798` and `Technology` has an average of `544.73724358`. The results are saves as `4_average_value_per_order.csv` in the folder `results/data_analysis`.
+The results how that for the `Category` of  `Furniture`, it has an average order value of `421.92158408`, `Office Supplies` has an average order value of `191.89943798` and `Technology` has an average of `544.73724358`. The data are visualized with the image below:
+
+![Visual 4](/images/visualizations/visual_market_sales_data_analysis-images-3.jpg)
+
+The results are saves as `4_average_value_per_order.csv` in the folder `results/data_analysis`.
 
 ##### 5. What is the average time between order date and ship date, and does it vary by ship mode or region?
 
@@ -192,22 +201,22 @@ For the overall average:
 -- 5.  What is the average time between order date and ship date, and does it vary by ship mode or region?
 -- For the overall average:
 SELECT
-	AVG(ShipDate - OrderDate) AS overall_avg_days
+	AVG(DATEDIFF(ShipDate, OrderDate)) AS overall_avg_days
 FROM market_sales;
 ```
 
 The query identifies the average of the differences in days between the `ShipDate` and the `OrderDate`. The results of the query are:
 | overall_avg_days |
 | :--- |
-| 145.8273 |
-The results show that it takes `145.8273` days for the average order to arrive. 
+| 3.9611 |
+The results show that it takes `3.9611` days for the average order to arrive. 
 
 For the `ShipMode`, the data analyst used the following SQL query:
 ```
 -- For the ShipMode
 SELECT
     ShipMode,
-	AVG(ShipDate - OrderDate) AS avg_days
+	AVG(DATEDIFF(ShipDate, OrderDate)) AS avg_days
 FROM market_sales
 GROUP BY ShipMode
 ORDER BY avg_days DESC;
@@ -216,19 +225,19 @@ ORDER BY avg_days DESC;
 The query shows the differences of between the `ShipDate` and `OrderDate` in days grouped by the `ShipMode` to analyze each of the average days for each type. The results of the query are the following:
 | ShipMode | avg_days |
 | :--- | :--- |
-| Standard Class | 190.9913 |
-| Second Class | 116.0799 |
-| First Class | 59.4817 |
-| Same Day | 0.0446 |  
+| Standard Class | 5.0084 |
+| Second Class | 3.2492 |
+| First Class | 2.1792 |
+| Same Day | 0.0446 |
 
-The results show the average length of time between the different shipping modes. `Standard Class` has the longest with `190.9913` days, followed by `Second Class` with `116.0799` days, `First Class` with `59.4817` days and `Same Day` with `0.0446` days.
+The results show the average length of time between the different shipping modes. `Standard Class` has the longest time with `5.0084` days, followed by `Second Class` with `3.2492` days, `First Class` with `2.1792` days and `Same Day` with `0.0446` days.
 
 For each `Region`, the analyst used:
 ```
 -- For the Region
 SELECT
     Region,
-	AVG(ShipDate - OrderDate) AS avg_days
+	AVG(DATEDIFF(ShipDate, OrderDate)) AS avg_days
 FROM market_sales
 GROUP BY Region
 ORDER BY avg_days DESC;
@@ -236,14 +245,18 @@ ORDER BY avg_days DESC;
 The query shows the differences of between the `ShipDate` and `OrderDate` in days grouped by the `Region` to analyze each of the average days for each type. The results of the query are the following:
 | Region | avg_days |
 | :--- | :--- |
-| Central | 198.1256 |
-| West | 137.9815 |
-| East | 128.8625 |
-| South | 116.2904 |
+| Central | 4.0659 |
+| South | 3.9612 |
+| West | 3.9303 |
+| East | 3.9102 |
 
-The results of the query shows that `Central` has the longest time with `198.1256` days. Followed by `West` with `137.9815` days, `East` with `128.8625` days and lastly, `South` with `116.2904` days. 
+The results of the query shows that `Central` has the longest time with `4.0659` days. Followed by `South` with `3.9612` days, `West` with `3.9303` days and lastly, `East` with `3.9102` days. 
 
-The results show that the average time between order and shipdate varies depending on the shipping mode and regions. The results are saved in as `5_overall_average_days.csv`, `5_ship_mode_average.csv`, and `5_region_average.csv` in the folder `results/data_analysis` respectively.
+The results show that the average time between order and shipdate varies depending on the shipping mode and regions. The data are visualized in the image below:
+
+![Visual 5](/images/visualizations/visual_market_sales_data_analysis-images-4.jpg)
+
+The results are saved in as `5_overall_average_days.csv`, `5_ship_mode_average.csv`, and `5_region_average.csv` in the folder `results/data_analysis` respectively.
 
 ##### 6. Is there a relationship between customer segment and preferred product category?
 
@@ -274,7 +287,11 @@ The query determines the frequency of of the products ordered by the `Segment` u
 
 The results show that `Consumer`, `Corporate`, and `Home Office` are more likely to order products under the `Office Supplies` category. Followed by `Furniture` and `Technology`.
 
-There is a relation ship between the `Segment` and `Category` where all of the `Segment` types are more likely to order `Office Supplies` products. The results is saved as `6_relationship_segment_category.csv` in the folder `results/data_analysis`;
+There is a relation ship between the `Segment` and `Category` where all of the `Segment` types are more likely to order `Office Supplies` products. The data is visualized with the image below:
+
+![Visual 6](/images/visualizations/visual_market_sales_data_analysis-images-5.jpg)
+
+The results is saved as `6_relationship_segment_category.csv` in the folder `results/data_analysis`.
 
 ##### 7. What are the top 10 customers by total sales, and how much do they contribute to overall revenue (Pareto analysis)?
 
@@ -323,6 +340,8 @@ The query is divided into many steps. Firstly, the query gathers all the custome
 
 Overall, the customers in the top 10 order sales contribute up to `6.8%` of the overall revenue. The data visualization below shows the whole Pareto Analysis:
 
+![Visual 7](/images/visualizations/visual_market_sales_data_analysis-images-6.jpg)
+
 The results are saves as `7_top_ten_sales.csv` in the folder `results/data_analysis`.
 
 ##### 8. Which shipping mode is most commonly used?
@@ -347,7 +366,25 @@ The query results are the following:
 | Second Class | 1902 |
 | First Class | 1501 |
 | Same Day | 538 |
+****
+The results show that the `Standard Class` is the most commonly used, followed by `Second Class`, `First Class`, and `Same Day` respectively. The visualization of the data are shown below:
 
-The results show that the `Standard Class` is the most commonly used, followed by `Second Class`, `First Class`, and `Same Day` respectively. The results of the following are saved as `8_ship_mode_count.csv` in the folder `results/data_analysis`.
+![Visual 9](/images/visualizations/visual_market_sales_data_analysis-images-7.jpg)
 
-##### 9. 
+The results of the following are saved as `8_ship_mode_count.csv` in the folder `results/data_analysis`.
+
+##### 9. Can you build a time-series model to forecast next quarter's sales?  
+
+The analyst used PoweBI's Forecast functions to build a time-series model that can predict the next quarter's sales. The time-series model with forecast uses 1 forecast length of the units 'Quarters', meaning each length will generate a forecast of one quarter. It uses 90 daily points for the forecast representing the possible days in a quarter with a confidence interval of 95%. The results are the following:
+
+![Visual 8](/images/visualizations/visual_market_sales_data_analysis-images-8.jpg)
+
+The image is divided with lines signifying the end of each first quarter. The forecast predicts the spike in sales just after the start of the year and its decrease after. The forecast also shows the rise and fall of average prices until just after the middle period of the first quarter before the eventual spike just before the and of the quarter. The height of the spikes reflect to the inconsistency of the average sales around the same period.
+
+##### 10. Can you provide a forecast for the next year?
+
+The analyst used PoweBI's Forecast functions to build a time-series model that can forecast the sales up to next year of 2019. The time-series model with forecast uses 1 forecast length of the units 'Years', meaning each length will generate a forecast of one year. It uses 360 daily points for the forecast representing the possible days in a quarter with a confidence interval of 95%. The results are the following:
+
+![Visual 10](/images/visualizations/visual_market_sales_data_analysis-images-9.jpg)
+
+The forecast reflects the spikes in average sales at the start of each year but with varying values. The forecast shows the up and downs of the average sales between January and July. The forecast also shows the prediction of big spikes just after July but with inconsistent values.
