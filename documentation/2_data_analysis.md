@@ -66,6 +66,8 @@ The results show that `Technology, Phones` have the highest total sales followed
 
 ![Visual 1](/images/visualizations/visual_market_sales_data_analysis-images-0.jpg)
 
+The results are saved as `1_category_subcategory_highest_sales.csv` in the `results/data_analysis` folder.
+
 ##### 2. Which regions are underperforming and might benefit from targeted marketing?
 
 The analyst used the total for all the sales as the benchmark average to compare the average sales of each region. The region is considered to be underperforming if the averages sales fall below the lower quantile of the total sales. The analyst used the following SQL query:
@@ -186,7 +188,7 @@ The SQL query selects the `OrderID`, `Category`, and the sum of the `Sales` per 
 | Office Supplies | 191.89943798 |
 | Technology | 544.73724358 |
 
-The results how that for the `Category` of  `Furniture`, it has an average order value of `421.92158408`, `Office Supplies` has an average order value of `191.89943798` and `Technology` has an average of `544.73724358`. The data are visualized with the image below:
+The results how that for the `Category` of  `Furniture`, it has an average order value of `421.92158408`, `Office Supplies` has an average order value of `191.89943798` and `Technology` has an average of `544.73724358`. The results show a varied average order value where `Technology` is dominant, followed by `Furniture` and lastly, `Office Supplies`. The data are visualized with the image below:
 
 ![Visual 4](/images/visualizations/visual_market_sales_data_analysis-images-3.jpg)
 
