@@ -4,6 +4,8 @@
 
 ## Insights and Recommendations
 
+The following paragraphs show the additional findings the data analyst have discovered during the analysis. The data analsyt also provided recommendations for each insights regarding the proper approach for each one. The following insights are shown below:
+
 #### Early Yearly Sale Spike
 
 The analysis of the data presented a recurring trend where for every start of the year around late January to early February after 2015, a very noticeable spike in sales is present. Typically, this early spike can result from new year fiscal budgets by companies looking to expand or replace products which causes the spike. The data analyst recommends the company the following points:
@@ -72,5 +74,13 @@ The data revealed that majority of the customers are under the `Consumer` segmen
   * Expanded Customer Marketing
     * Since there are customers under the other segments, it is also beneficial for the company to branch out their customers for `Corporate` and `Home Office`. This way, the company can effectively rely on multiple types of customers, making the source of income varied across segments.
 
+#### No Price per Product or Quantity of Products Purchased
+
+Prices per unit of products and the quantity of how many products are purchased is important for providing a clearer context and understanding of each records. In their exclusion, it has become unclear whether a product has been ordered in multiple quantities or not. The data analyst suggests the following:
+
+  * Price per Single Unit of Products and the Quantity Ordered
+    * The inclusion of these two new columns for each product can help in the sale analysis by giving clearer history and context. For example, a single purchase of muliple office machineries will appear as a single record with a higher sales value. There is no data to support how many are sold or the price that may support the value of the order. With them included, this can no longer be a problem.
+
 ## Conclusion
 
+The analysis of the dataset revealed several findings and insights relevant to the performance of Sales for the company. The customers being dominated by one segment, differences in the average of sales by region, shipping mode, category, and sub category shows the dominant forces in terms of having the most profit for the company. The presence of trends or patterns show consistency among the sales and provides an opportunity for the company to utilize this in either promoting growth in the current customers or attracting new ones. The data reveals the importance of having varied products to satisfy the needs of different customers. Knowing more about the customers helps in providing a clearer understanding of their preferences which can be built upon as the foundation of a growing customer base. To conclude, the data analysis provides important details about the dataset, suggestions and recommendations for improvement, trends and forecast analysis, and a foundation where it can be used to support the growth of sales and marketing for a company. 
