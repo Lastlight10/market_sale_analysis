@@ -36,6 +36,7 @@ The data analyst conducted the dataset examination using SQL in MySQL Workbench 
   * documentation/
     * 1_data_cleaning.md -- The documentation for data cleaning and exploration
     * 2_analysis.md -- The documentation for the data analysis
+    * 3_recommendation_conclusion.md -- The documentation for other insights and recommendations
   * images/
     * visualizations/
       * *data_visualizations.jpg -- images that shows the visualization of results for the questions
