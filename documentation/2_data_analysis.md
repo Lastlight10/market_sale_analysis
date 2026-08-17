@@ -2,6 +2,29 @@
 
 ##### Dataset provided by [Rohit Sahoo](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting) from Kaggle.
 
+## Table of Contents
+
+The contents of this file is shown and listed below:
+
+- [Market Sales Dataset Analysis](#market-sales-dataset-analysis)
+        - [Dataset provided by Rohit Sahoo from Kaggle.](#dataset-provided-by-rohit-sahoo-from-kaggle)
+  - [Dataset Analysis and Exploration](#dataset-analysis-and-exploration)
+    - [Overview](#overview)
+    - [Data Analysis and Exploration](#data-analysis-and-exploration)
+      - [Questions](#questions)
+      - [Exploratory Data Analysis](#exploratory-data-analysis)
+        - [1. Which product category and sub-category generate the highest sales?](#1-which-product-category-and-sub-category-generate-the-highest-sales)
+        - [2. Which regions are underperforming and might benefit from targeted marketing?](#2-which-regions-are-underperforming-and-might-benefit-from-targeted-marketing)
+        - [3. What is the distribution of orders across different customer segments (Consumer, Corporate, Home Office)?](#3-what-is-the-distribution-of-orders-across-different-customer-segments-consumer-corporate-home-office)
+        - [4. What is the average order value, and how does it vary by category?](#4-what-is-the-average-order-value-and-how-does-it-vary-by-category)
+        - [5. What is the average time between order date and ship date, and does it vary by ship mode or region?](#5-what-is-the-average-time-between-order-date-and-ship-date-and-does-it-vary-by-ship-mode-or-region)
+        - [6. Is there a relationship between customer segment and preferred product category?](#6-is-there-a-relationship-between-customer-segment-and-preferred-product-category)
+        - [7. What are the top 10 customers by total sales, and how much do they contribute to overall revenue (Pareto analysis)?](#7-what-are-the-top-10-customers-by-total-sales-and-how-much-do-they-contribute-to-overall-revenue-pareto-analysis)
+        - [8. Which shipping mode is most commonly used?](#8-which-shipping-mode-is-most-commonly-used)
+        - [9. Can you build a time-series model to forecast next quarter's sales?](#9-can-you-build-a-time-series-model-to-forecast-next-quarters-sales)
+        - [10. Can you provide a forecast for the next year?](#10-can-you-provide-a-forecast-for-the-next-year)
+  
+
 ## Dataset Analysis and Exploration
 
 ### Overview

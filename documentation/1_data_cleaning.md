@@ -2,6 +2,40 @@
 
 ##### Dataset provided by [Rohit Sahoo](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting) from Kaggle.
 
+## Table of Contents
+
+The contents of this file is shown and listed below:
+
+-[Market Sales Dataset Analysis](#market-sales-dataset-analysis)
+    - [Dataset provided by Rohit Sahoo from Kaggle.](#dataset-provided-by-rohit-sahoo-from-kaggle)
+- [Market Sales Dataset Analysis](#market-sales-dataset-analysis)
+        - [Dataset provided by Rohit Sahoo from Kaggle.](#dataset-provided-by-rohit-sahoo-from-kaggle)
+  - [Table of Contents](#table-of-contents)
+  - [Dataset Collection and Cleaning](#dataset-collection-and-cleaning)
+    - [Overview](#overview)
+    - [Data Collection](#data-collection)
+    - [Data Cleaning and Preparation](#data-cleaning-and-preparation)
+      - [Table Structure](#table-structure)
+      - [Null Values](#null-values)
+      - [RowID](#rowid)
+      - [OrderID](#orderid)
+      - [OrderDate](#orderdate)
+      - [ShipDate](#shipdate)
+      - [ShipMode](#shipmode)
+      - [CustomerID](#customerid)
+      - [CustomerName](#customername)
+      - [Segment](#segment)
+      - [Country](#country)
+      - [City](#city)
+      - [PostalCode](#postalcode)
+      - [Null Values Update](#null-values-update)
+      - [Region](#region)
+      - [ProductID](#productid)
+      - [Category](#category)
+      - [SubCategory](#subcategory)
+      - [ProductName](#productname)
+      - [Sales](#sales)
+
 ## Dataset Collection and Cleaning
 
 ### Overview

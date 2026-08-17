@@ -2,6 +2,22 @@
 
 ##### Dataset provided by [Rohit Sahoo](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting) from Kaggle.
 
+## Table of Contents
+
+The contents of this file is shown and listed below:
+
+- [Market Sales Dataset Analysis](#market-sales-dataset-analysis)
+        - [Dataset provided by Rohit Sahoo from Kaggle.](#dataset-provided-by-rohit-sahoo-from-kaggle)
+  - [Table of Contents](#table-of-contents)
+  - [Insights and Recommendations](#insights-and-recommendations)
+      - [Early Yearly Sale Spike](#early-yearly-sale-spike)
+      - [Office Supplies: Highest Volumes but Lowest Average Sales](#office-supplies-highest-volumes-but-lowest-average-sales)
+      - [South Region: Least Orders but Highest Average in Sales](#south-region-least-orders-but-highest-average-in-sales)
+      - [Consumers: Majority of Customers](#consumers-majority-of-customers)
+      - [No Price per Product or Quantity of Products Purchased](#no-price-per-product-or-quantity-of-products-purchased)
+  - [Conclusion](#conclusion)
+   
+
 ## Insights and Recommendations
 
 The following paragraphs show the additional findings the data analyst have discovered during the analysis. The data analsyt also provided recommendations for each insights regarding the proper approach for each one. The following insights are shown below:
