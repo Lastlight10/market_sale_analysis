@@ -1,4 +1,4 @@
-# CREDIT RISK DATASET ANALYSIS
+# Market Sales Dataset Analysis
 ###### From the dataset provided by Rohit Sahoo from [Kaggle](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting).
 
 ### Skills
@@ -62,6 +62,7 @@ The data analyst conducted the dataset examination using SQL in MySQL Workbench 
   The following notebooks need to run in the following order:  
   1. 1_data_cleaning.md
   2. 2_data_analysis.md
+  3. 3_recommendation_conclusion.md
 
   To run a local version of the dashboard and data visualizations, you can import the file `market_sales_data_analysis.pbix` in your PowerBI:
 
